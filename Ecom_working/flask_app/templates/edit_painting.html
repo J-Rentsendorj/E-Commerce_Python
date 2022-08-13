@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Edit</title>
+</head>
+<body>
+{% with messages = get_flashed_messages() %}    
+    {% if messages %}                        
+        {% for message in messages %}     
+            <p>{{message}}</p>          
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+<div class="container">
+    <style>
+        .container {
+            margin-top: 100px;
+        }
+    </style>
+    <h1>Edit Post</h1>
+    <a href="/dashboard" class="btn btn-primary">Dashboard</a>
+        <!-- <a href="/logout">logout</a> -->
+    <form action="/recipe/update" method="post">
+    <div class="form-group">
+        <label>Title</label>
+        <input type="text" class="form-control" value={{painting.title}}> 
+    <div class="form-group">
+        <label>Description</label>
+        <input type="text" class="form-control" value={{painting.description}}> 
+    </div>
+    <div class="form-group">
+        <label>Price</label>
+        <input type="text" class="form-control" value={{painting.price}}> 
+    </div>
+    <input type="hidden" value={{painting.id}} name="id">
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+</body>
+</html>

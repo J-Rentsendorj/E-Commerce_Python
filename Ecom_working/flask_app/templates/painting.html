@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>paintings</title>
+</head>
+
+<body>
+    <div class="container">
+        <style>
+            .container {
+                margin-top: 100px;
+            }
+        </style>
+        <h1>Welcome {{session['user_name']}}</h1>
+        <a href="/painting/new" class="btn btn-primary">Add New Product</a>
+        <h4>Products for Sale</h4>
+        <table class="table">
+            <tbody>
+                {% for painting in paintings %}
+                <tr>
+                    <td><a href="/painting/show/{{painting.id}}">{{painting.title}}</a></td>
+                    <td>{{painting.description}}</td>
+                    <td>{{painting.first_name}}</td>
+                    <td>
+                        {% if painting.user_id == session['user_id'] %}
+                        <a href="/painting/edit/{{painting.id}}">Edit</a>
+                        <a href="/painting/destroy/{{painting.id}}">Delete</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/logout" class="btn btn-primary">Logout</a>
+    </div>
+</body>
+
+</html>
